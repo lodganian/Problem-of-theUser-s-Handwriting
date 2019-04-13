@@ -7,14 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Problem_of_theUser_s_Handwriting
 {
     public partial class MainForm : Form
     {
+        string UsersPath = "../../../users.dat";
+        BinaryFormatter formatter = new BinaryFormatter();
+        public List<User> Users = new List<User>();
+
         public MainForm()
         {
             InitializeComponent();
+            using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
+            {
+                if (fs.Length != 0) 
+                { 
+                    User newUser = (User)formatter.Deserialize(fs);
+                    Users.Add(newUser); 
+                }
+            }
         }
 
         /// <summary>
@@ -27,10 +41,14 @@ namespace Problem_of_theUser_s_Handwriting
             Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            (new RegisterForm(this)).Show();
-            this.Hide();
+            (new RegisterForm(this)).ShowDialog();
         }
     }
 }

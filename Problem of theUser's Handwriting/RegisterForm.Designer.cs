@@ -45,6 +45,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Зарегистрироваться";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -67,7 +68,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(404, 38);
+            this.textBox1.Location = new System.Drawing.Point(232, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 26);
             this.textBox1.TabIndex = 3;
@@ -75,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(222, 41);
+            this.label1.Location = new System.Drawing.Point(102, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 20);
             this.label1.TabIndex = 4;
@@ -84,7 +85,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(301, 86);
+            this.label2.Location = new System.Drawing.Point(102, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(272, 20);
             this.label2.TabIndex = 5;
@@ -92,10 +93,11 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(187, 109);
+            this.richTextBox2.Enabled = false;
+            this.richTextBox2.Location = new System.Drawing.Point(106, 109);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(502, 96);
+            this.richTextBox2.Size = new System.Drawing.Size(545, 96);
             this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "";
             // 

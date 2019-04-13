@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Problem_of_theUser_s_Handwriting
 {
     [Serializable]
-    class User
+    public class User
     {
         string login;//login
-        public string Login{ get;}
-        double[,] times = new double[1000, 1000];
-        string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъымэюя.,1234567890-+:";
+        public string Login{ get; set;}
+        public double[,] times = new double[1000, 1000];
+        static string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъымэюя.,1234567890-+:";
         int cursorPosicion = 0;
         
         /// <summary>
