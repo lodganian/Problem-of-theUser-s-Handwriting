@@ -24,9 +24,8 @@ namespace Problem_of_theUser_s_Handwriting
             using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
             {
                 if (fs.Length != 0) 
-                { 
-                    User newUser = (User)formatter.Deserialize(fs);
-                    Users.Add(newUser); 
+                {
+                    Users = (List<User>)formatter.Deserialize(fs);
                 }
             }
         }
@@ -49,6 +48,17 @@ namespace Problem_of_theUser_s_Handwriting
         private void button2_Click(object sender, EventArgs e)
         {
             (new RegisterForm(this)).ShowDialog();
+        }
+
+        /// <summary>
+        /// Кнопка для входа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            (new Login(this)).ShowDialog();
         }
     }
 }

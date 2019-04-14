@@ -22,7 +22,6 @@ namespace Problem_of_theUser_s_Handwriting
         DateTime timeNow = DateTime.Now;//Таймер
         MainForm form;//форма, для возвращения
         bool checkText = false;//Проверка записи текста в поле
-        bool checkLogin = false;//Проверка логина
         string prevText = "";//Запись текста
         User us = new User("login");//Новый пользователь
 
@@ -50,7 +49,7 @@ namespace Problem_of_theUser_s_Handwriting
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             DateTime time = DateTime.Now;
-            TimeSpan eps = timeNow-time;
+            TimeSpan eps = time - timeNow;
             us.PutTime(prevText, richTextBox1.Text, eps.TotalMilliseconds);
             prevText = richTextBox1.Text;
             if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
@@ -58,27 +57,43 @@ namespace Problem_of_theUser_s_Handwriting
                 checkText = true;
                 richTextBox1.Enabled = false;
             }
+            timeNow=DateTime.Now;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try { 
-                foreach(User user in form.Users) 
-                { 
-                    if (user.Login == textBox1.Text) throw new ArgumentException();
+            if (checkText) { 
+                try { 
+                    foreach(User user in form.Users) 
+                    { 
+                        if (user.Login == textBox1.Text) throw new ArgumentException();
+                    }
+                    if (textBox1.Text == "") throw new ArgumentNullException();
+                    us.Login = textBox1.Text;
+                    form.Users.Add(us);
+                    form.Users.Sort();
+                    using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
+                    {
+                        formatter.Serialize(fs, form.Users);
+                    }
+                    this.Close();
                 }
-                if (textBox1.Text == "") throw new ArgumentNullException();
-                us.Login = textBox1.Text;
-                form.Users.Add(us);
-                using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
+                catch (ArgumentNullException)
                 {
-                    formatter.Serialize(fs, us);
+                    MessageBox.Show("Введите логин!");
                 }
-                this.Close();
+                catch ( ArgumentException)
+                {
+                    MessageBox.Show("Выбересте другой логин,\n такой уже занят!");
+                }
+                catch (Exception)
+                { 
+                   MessageBox.Show("Всё полетело по пизде");
+                }
             }
-            catch (Exception)
-            { 
-                MessageBox.Show("Всё полетело по пизде");
+            else 
+            {
+                MessageBox.Show("Заполните все поля!");
             }
         }
     }
