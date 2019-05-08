@@ -13,6 +13,8 @@ namespace Problem_of_theUser_s_Handwriting
 {
     public partial class Login : Form
     {
+        DateTime end = DateTime.Now;//Подсчет ср. скорости
+        DateTime start = DateTime.Now;//Подсчет ср. скорости
         double deltaUserTime = 0;
         double deltaCurrentTime = 0;
         bool checkText = false;//Проверка записи текста в поле
@@ -39,61 +41,54 @@ namespace Problem_of_theUser_s_Handwriting
                 richTextBox1.Text = "Файл не найден";
             }
             richTextBox2.Enabled = false;
-            
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            form.Show();
             this.Close();
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
-            DateTime time = DateTime.Now;
+            DateTime time = DateTime.Now;//Подсчет ср. скорости между переходами
             double tmp;
             comboBox1.Enabled = false;
             TimeSpan eps = time - timeNow;
             int i = 0;
-            try { 
-
-                while (i< prevText.Length && prevText[i]==richTextBox2.Text[i]) i++;
-                tmp = form.Users[comboBox1.SelectedIndex].GetTime(prevText.ToLower()[i-1], richTextBox2.Text.ToLower()[i]);
+            //if (richTextBox2.Text.Length == (prevText.Length - 1) && prevText != "") 
+            //{ 
+                try 
+                { 
+                    if (richTextBox2.Text.Length == 1) start = DateTime.Now;
+                    while (i< prevText.Length && prevText[i]==richTextBox2.Text[i]) i++;
+                    tmp = form.Users[comboBox1.SelectedIndex].GetTime(prevText.ToLower()[i-1], richTextBox2.Text.ToLower()[i]);
             
-                if (tmp > 0) 
-                {
-                    deltaUserTime+=tmp;
-                    deltaCurrentTime+=eps.TotalMilliseconds;
-                }
-                prevText = richTextBox2.Text;
-                button1.Text = deltaUserTime.ToString();
-                button2.Text = deltaCurrentTime.ToString();
-                if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
-                {
-                    checkText = true;
-                    richTextBox2.Enabled = false;
+                    if (tmp > 0) 
+                    {
+                        deltaUserTime+=tmp;
+                        deltaCurrentTime+=eps.TotalMilliseconds;
+                    }
+                    prevText = richTextBox2.Text;
                     button1.Text = deltaUserTime.ToString();
                     button2.Text = deltaCurrentTime.ToString();
-                    label1.Text = (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower()).ToString();
-
-
+                    if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
+                    {
+                        checkText = true;
+                        richTextBox2.Enabled = false;
+                        end = DateTime.Now;
+                    }
                 }
-            }
-            catch (Exception) 
-            {
-                prevText = richTextBox2.Text;
-                if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
+                catch (Exception) 
                 {
-                    checkText = true;
-                    richTextBox2.Enabled = false;
-                    button1.Text = deltaUserTime.ToString();
-                    button2.Text = deltaCurrentTime.ToString();
-                    label1.Text = (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower()).ToString();
-
-
+                    prevText = richTextBox2.Text;
+                    if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
+                    {
+                        checkText = true;
+                        richTextBox2.Enabled = false;
+                        label1.Text = (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower()).ToString();
+                    }
                 }
-            }
+            //}
             timeNow=DateTime.Now;
         }
 
@@ -101,8 +96,16 @@ namespace Problem_of_theUser_s_Handwriting
         {
             if (checkText) 
             {
-                if (Math.Abs(deltaCurrentTime - deltaUserTime)>= 0.05*deltaUserTime) MessageBox.Show("Сорре, но это не ты");
-                else MessageBox.Show("Ура!");
+                double tmp = 0.7*(1 - Math.Abs(deltaCurrentTime - deltaUserTime)/deltaUserTime);
+                if ( form.Users[comboBox1.SelectedIndex].checkSpeed((end - start).TotalMilliseconds/richTextBox1.Text.Length)) tmp+=0.3;
+                if (tmp < 0.55) MessageBox.Show("Извините, но это не ваш профиль\nЕсли этот профиль ваш, пожалуйста, повторите вход!");
+                else
+                {
+                    Desktop temp = new Desktop(form, form.Users[comboBox1.SelectedIndex]);
+                    temp.Show();
+                    this.Close();
+                    form.Hide();
+                }
             }
         }
 

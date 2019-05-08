@@ -15,6 +15,8 @@ namespace Problem_of_theUser_s_Handwriting
 {
     public partial class RegisterForm : Form
     {
+        DateTime end = DateTime.Now;//Подсчет ср. скорости
+        DateTime start = DateTime.Now;//Подсчет ср. скорости
         static Random rnd = new Random();//генератор рандома
         string UsersPath = "../../../users.dat";//Путь пользователей
         BinaryFormatter formatter = new BinaryFormatter();
@@ -49,11 +51,13 @@ namespace Problem_of_theUser_s_Handwriting
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             DateTime time = DateTime.Now;
+            if (richTextBox1.Text.Length == 1) start = DateTime.Now;
             TimeSpan eps = time - timeNow;
             us.PutTime(prevText, richTextBox1.Text, eps.TotalMilliseconds);
             prevText = richTextBox1.Text;
             if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
             {
+                end = DateTime.Now;
                 checkText = true;
                 richTextBox1.Enabled = false;
             }
@@ -68,8 +72,8 @@ namespace Problem_of_theUser_s_Handwriting
                     { 
                         if (user.Login == textBox1.Text) throw new ArgumentException();
                     }
-                    if (textBox1.Text == "") throw new ArgumentNullException();
                     us.Login = textBox1.Text;
+                    us.put_speed((end-start).TotalMilliseconds/richTextBox2.Text.Length);
                     form.Users.Add(us);
                     form.Users.Sort();
                     using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
@@ -88,7 +92,7 @@ namespace Problem_of_theUser_s_Handwriting
                 }
                 catch (Exception)
                 { 
-                   MessageBox.Show("Всё полетело по пизде");
+                   MessageBox.Show("Неизвестная ошибка. Пните vk.com/cs_hse и он когда-нибудь исправит");
                 }
             }
             else 

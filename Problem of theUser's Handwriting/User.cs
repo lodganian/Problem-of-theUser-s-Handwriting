@@ -10,20 +10,34 @@ namespace Problem_of_theUser_s_Handwriting
     [Serializable]
     public class User: IComparable<User>
     {
+        public List<Project> projects = new List<Project>();
         string login;//login
         public string Login{ get; set;}
-        public double[,] times = new double[1000, 1000];
-        static string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъымэюя";
+        static string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъымэюя";//Алфавит для нахождения индексов
+        public double[,] times = new double[alphabet.Length, alphabet.Length];
         int cursorPosicion = 0;
-        int tmp;
-        
+        double speed = 0;
+        double acceleratio = 0;
+
         /// <summary>
         /// Конструктор для пользователя
         /// </summary>
         /// <param name="login"></param>
         public User(string login)
         {
+            if (login == "") throw new ArgumentNullException();
             this.login = login;
+        }
+
+        /// <summary>
+        /// Конструктор для пользователя 2
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="speed"></param>
+        public User(string login, double speed)
+        {
+            this.login = login;
+            this.speed = speed;
         }
 
         /// <summary>
@@ -46,12 +60,21 @@ namespace Problem_of_theUser_s_Handwriting
                     int prch = alphabet.IndexOf(curr[cursorPosicion]);
                     int cuch = alphabet.IndexOf(curr[i]);
                     if (prch != -1 && cuch != -1 && times[prch, cuch] == 0) times[prch, cuch] = time;//Запись времени переключения
-                    else if (prch != -1 && cuch != -1 && Math.Abs(times[prch,cuch]-time)>0.5* times[prch, cuch]) times[prch, cuch] = (time+ times[prch, cuch])/2;//Находим ср. ар между нажатиями, если пользователь не "думал долго"
+                    else 
+                        if (prch != -1 && cuch != -1 && Math.Abs(times[prch,cuch]-time)<0.5* times[prch, cuch]) 
+                            times[prch, cuch] = (time+ times[prch, cuch])/2;//Находим ср. ар между нажатиями, если пользователь не "думал долго"
                     cursorPosicion = i;//Позиция предыдущего курсора
                 } 
             }
+
         }
 
+        /// <summary>
+        /// Метод, возвращающий время перехода между 2 нажатиями
+        /// </summary>
+        /// <param name="perv">Предыдущий символ</param>
+        /// <param name="curr">Новый символ</param>
+        /// <returns></returns>
         public double GetTime(char perv, char curr) 
         {
             int prch = alphabet.IndexOf(perv);
@@ -71,6 +94,21 @@ namespace Problem_of_theUser_s_Handwriting
         public int CompareTo(User other)
         {
             return this.login.CompareTo(other.login);
+        }
+
+        /// <summary>
+        /// Проверка средней скорости пишущего
+        /// </summary>
+        /// <param name="anotherSpeed"></param>
+        /// <returns></returns>
+        public bool checkSpeed(double anotherSpeed)
+        {
+            return (Math.Abs(anotherSpeed-speed)<=0.05*speed);
+        }
+
+        public void put_speed(double speed) 
+        {
+            this.speed = speed;
         }
     }
 }
