@@ -12,7 +12,7 @@ namespace Problem_of_theUser_s_Handwriting
 
         public string Name { get {return name; } } 
         string name;
-        string[] userText;
+        string[] userText= {""};
 
         /// <summary>
         /// Создание нового класса
@@ -29,7 +29,7 @@ namespace Problem_of_theUser_s_Handwriting
         /// </summary>
         public void Clear() 
         { 
-            userText = new string[3];
+            userText = new string[1];
         }
 
         /// <summary>
@@ -57,6 +57,17 @@ namespace Problem_of_theUser_s_Handwriting
         public void Copy(Project project)
         {
             project.userText = this.userText;
+        }
+        public override string ToString()
+        {
+            string tmp = "";
+            
+            foreach (var item in userText)
+            {
+                tmp += item;
+                tmp += "\n";
+            }
+            return tmp;
         }
     }
 }

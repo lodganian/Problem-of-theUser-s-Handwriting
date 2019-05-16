@@ -21,6 +21,8 @@ namespace Problem_of_theUser_s_Handwriting
         public MainForm()
         {
             InitializeComponent();
+            label1.Text = "Программа решения задачи \nидентификации \nклавиатурного почерка\nпользователя";
+            label2.Text = "Дерябин Фёдор\nСтудент группы БПИ-183\n fvderyabin@edu.hse.ru";
             using (FileStream fs = new FileStream(UsersPath, FileMode.OpenOrCreate))
             {
                 if (fs.Length != 0) 
@@ -58,6 +60,11 @@ namespace Problem_of_theUser_s_Handwriting
         private void button1_Click(object sender, EventArgs e)
         {
             (new Login(this)).ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

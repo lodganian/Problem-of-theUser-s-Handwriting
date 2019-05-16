@@ -16,6 +16,7 @@ namespace Problem_of_theUser_s_Handwriting
         Desktop form;
         public Adding(Desktop form)
         {
+            this.form = form;
             projects = form.user.projects;
             InitializeComponent();
         }
@@ -30,10 +31,13 @@ namespace Problem_of_theUser_s_Handwriting
                     break;
                 }
             if (flag) MessageBox.Show("Проект с таким именем уже есть!");
+            else if (textBox1.Text == "") MessageBox.Show("Введите имя проекта");
             else 
             { 
                 form.user.projects.Add(new Project(textBox1.Text));
+                form.OpenNewProject();
                 this.Close();
+                
             }
         }
     }

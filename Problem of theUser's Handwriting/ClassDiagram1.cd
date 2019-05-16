@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Problem_of_theUser_s_Handwriting.Adding">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAABAAAACAAAACAAAIAAAAEEABAAAAAAA=</HashCode>
+      <FileName>Adding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="projects" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.Desktop">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAEAQECpCACAUEgAASAAAAiFAAAAAAAABAYECBQAQE=</HashCode>
+      <FileName>Desktop.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+      <Field Name="user" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.Login">
+    <Position X="18.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAAAChCAgABExAAGAAAACAAAYAAAAAGBYAAAAAAA=</HashCode>
+      <FileName>Login.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.MainForm">
+    <Position X="16.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACEAACAAAQAAAACAAAACAAA4AAAAAHAAAAAAAAA=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Users" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.Open">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAAQAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Open.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.Project">
+    <Position X="13.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIABAAAAAAAEAAAAAAQAAgAEAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.RegisterForm">
+    <Position X="13.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAAEChCAAAREgAACAAAACAAAYAAAAFGBYAAAAAAA=</HashCode>
+      <FileName>RegisterForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+      <Field Name="us" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.Remove">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAAQAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Remove.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="form" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Problem_of_theUser_s_Handwriting.User" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAABAAQAAAAAAAIAAgAAAQwAAAgRAAAAEAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="projects" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

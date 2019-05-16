@@ -20,7 +20,7 @@ namespace Problem_of_theUser_s_Handwriting
         static Random rnd = new Random();//генератор рандома
         string UsersPath = "../../../users.dat";//Путь пользователей
         BinaryFormatter formatter = new BinaryFormatter();
-        string FileTextPath = "../../../texts.txt";//Путь файла
+        string FileTextPath = "../../../textForRegistration.txt";//Путь файла
         DateTime timeNow = DateTime.Now;//Таймер
         MainForm form;//форма, для возвращения
         bool checkText = false;//Проверка записи текста в поле

@@ -23,6 +23,7 @@ namespace Problem_of_theUser_s_Handwriting
         static Random rnd = new Random();
         string FileTextPath = "../../../texts.txt";//Путь файла
         MainForm form;
+
         public Login(MainForm form)
         {
             this.form = form;
@@ -69,8 +70,8 @@ namespace Problem_of_theUser_s_Handwriting
                         deltaCurrentTime+=eps.TotalMilliseconds;
                     }
                     prevText = richTextBox2.Text;
-                    button1.Text = deltaUserTime.ToString();
-                    button2.Text = deltaCurrentTime.ToString();
+                    //button1.Text = deltaUserTime.ToString();
+                    //button2.Text = deltaCurrentTime.ToString();
                     if (richTextBox2.Text.ToLower() == richTextBox1.Text.ToLower())
                     {
                         checkText = true;
@@ -92,6 +93,7 @@ namespace Problem_of_theUser_s_Handwriting
             timeNow=DateTime.Now;
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (checkText) 
@@ -107,6 +109,8 @@ namespace Problem_of_theUser_s_Handwriting
                     form.Hide();
                 }
             }
+            else
+                MessageBox.Show("Проверьте правильность вашего предложения.");
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
