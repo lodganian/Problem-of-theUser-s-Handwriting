@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Windows.Forms;
 
 
 namespace Problem_of_theUser_s_Handwriting
@@ -27,6 +21,10 @@ namespace Problem_of_theUser_s_Handwriting
         string prevText = "";//Запись текста
         User us = new User("login");//Новый пользователь
 
+        /// <summary>
+        /// Конструктор для формы
+        /// </summary>
+        /// <param name="form">Предыдущая форма</param>
         public RegisterForm(MainForm form)
         {
             this.form = form;
@@ -42,12 +40,21 @@ namespace Problem_of_theUser_s_Handwriting
             }
         }
 
-
+        /// <summary>
+        /// Выход
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Считывание клавиатурного почерка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             DateTime time = DateTime.Now;
@@ -64,9 +71,14 @@ namespace Problem_of_theUser_s_Handwriting
             timeNow=DateTime.Now;
         }
 
+        /// <summary>
+        /// Регистрация нового пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkText) { 
+            if (checkText && richTextBox1.Text != "") { 
                 try { 
                     foreach(User user in form.Users) 
                     { 

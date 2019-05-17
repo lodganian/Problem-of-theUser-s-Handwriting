@@ -67,7 +67,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(0, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 560);
+            this.panel1.Size = new System.Drawing.Size(238, 604);
             this.panel1.TabIndex = 2;
             // 
             // button5
@@ -132,7 +132,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(105)))), ((int)(((byte)(123)))));
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(0, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(238, 112);
             this.button1.TabIndex = 0;

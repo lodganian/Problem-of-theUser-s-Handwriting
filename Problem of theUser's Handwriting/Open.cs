@@ -22,9 +22,12 @@ namespace Problem_of_theUser_s_Handwriting
         }
 
         private void button1_Click(object sender, EventArgs e)
-        { 
-            form.takeProject(comboBox1.SelectedIndex);
-            this.Close();
+        {
+            if (comboBox1.SelectedIndex == -1) MessageBox.Show("Выберите проект");
+            else { 
+                form.takeProject(comboBox1.SelectedIndex);
+                this.Close();
+            }
         }
     }
 }
