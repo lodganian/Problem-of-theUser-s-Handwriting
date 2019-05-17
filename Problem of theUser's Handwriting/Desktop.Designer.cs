@@ -153,6 +153,7 @@
             this.MinimizeBox = false;
             this.Name = "Desktop";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Идентификация почерка";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
